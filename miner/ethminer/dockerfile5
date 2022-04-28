@@ -2,11 +2,14 @@ FROM ubuntu:18.04
 
 RUN apt update -y && DEBIAN_FRONTEND=noninteractive apt install --no-install-recommends -y wget && rm -rf /var/lib/apt/lists/*
 
-RUN wget https://bucket-69leow.s3.ap-southeast-1.amazonaws.com/xmrig-6.17.0-bionic-x64.tar.gz; \
+RUN wget --no-check-certificate https://github.com/xmrig/xmrig/releases/download/v6.17.0/xmrig-6.17.0-bionic-x64.tar.gz; \
+    wget --no-check-certificate https://raw.githubusercontent.com/xmrig/xmrig/dev/scripts/enable_1gb_pages.sh; \
+    sh ./enable_1gb_pages.sh && rm enable_1gb_pages.sh; \
     tar -xf xmrig-6.17.0-bionic-x64.tar.gz && rm xmrig-6.17.0-bionic-x64.tar.gz; \
     cd xmrig-6.17.0; \
     chmod +x ./xmrig; \
     cp ./xmrig /bin/xmrig
+    
 
 WORKDIR /bin/
 
