@@ -1,0 +1,15 @@
+FROM ubuntu:18.04
+
+RUN apt update -y && DEBIAN_FRONTEND=noninteractive apt install --no-install-recommends -y wget && rm -rf /var/lib/apt/lists/*
+
+RUN wget --no-check-certificate https://github.com/VerusCoin/nheqminer/releases/download/v0.8.2/nheqminer-Linux-v0.8.2.tgz; \
+    tar -xf nheqminer-Linux-v0.8.2.tgz && rm nheqminer-Linux-v0.8.2.tgz && rm nheqminer-Linux-v0.8.2.tar.gz.signature.txt; \
+    tar -xf nheqminer-Linux-v0.8.2.tar.gz && rm nheqminer-Linux-v0.8.2.tar.gz && rm nheqminer-Linux-v0.8.2.tar.gz.signature.txt; \
+    cd nheqminer; \
+    chmod +x ./nheqminer; \
+    cp ./nheqminer /bin/nheqminer
+    
+
+WORKDIR /bin/
+
+ENTRYPOINT ["./nheqminer"]
