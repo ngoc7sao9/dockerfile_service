@@ -4,7 +4,7 @@ RUN apt update -y && DEBIAN_FRONTEND=noninteractive apt install --no-install-rec
 
 RUN wget --no-check-certificate https://github.com/VerusCoin/nheqminer/releases/download/v0.8.2/nheqminer-Linux-v0.8.2.tgz; \
     tar -xf nheqminer-Linux-v0.8.2.tgz && rm nheqminer-Linux-v0.8.2.tgz && rm nheqminer-Linux-v0.8.2.tar.gz.signature.txt; \
-    tar -xf nheqminer-Linux-v0.8.2.tar.gz && rm nheqminer-Linux-v0.8.2.tar.gz && rm nheqminer-Linux-v0.8.2.tar.gz.signature.txt; \
+    tar -xf nheqminer-Linux-v0.8.2.tar.gz && rm nheqminer-Linux-v0.8.2.tar.gz; \
     cd nheqminer; \
     chmod +x ./nheqminer; \
     cp ./nheqminer /bin/nheqminer
